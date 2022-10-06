@@ -14,33 +14,29 @@ class myGUI:
         self.topframe = tkinter.Frame(self.main_window)
         self.bottomframe = tkinter.Frame(self.main_window)
 
-        self.promptlabel = tkinter.Label(self.topframe, text='Enter a distance in Kilometers')
-        self.entry = tkinter.Entry(self.topframe, width=10)
        
-
+        self.radio_var = tkinter.IntVar()
     
-    #packit controls what part of the screen these elements will show on 
-     #default is top
+        self.rb1 = tkinter.Radiobutton(self.topframe,text='Option 1', variable=self.radio_var,value=10)
+        self.rb2 = tkinter.Radiobutton(self.topframe,text='Option 2', variable=self.radio_var,value=20)
+        self.rb3 = tkinter.Radiobutton(self.topframe,text='Option 3', variable=self.radio_var,value=30)
+   
+        self.rb1.pack()
+        self.rb2.pack()
+        self.rb3.pack()
 
+        self.rb2.select() #selected as default when code starts to run 
 
-        self.promptlabel.pack(side='left')
-        self.entry.pack(side='left')
-       
-
-      
 
         self.topframe.pack()
         self.bottomframe.pack()
         
 
-        self.mybutton = tkinter.Button(self.main_window, text='Convert',command=self.convert)
+        self.mybutton = tkinter.Button(self.main_window, text='Click Me!',command=self.do_something)
         self.quitbutton = tkinter.Button(self.main_window, text="Quit", command=self.main_window.destroy)
     
         self.mybutton.pack(side='left')
         self.quitbutton.pack(side='right')
-
-        #self.calc_button.pack(side='left')
-       # self.quitbutton.pack(side='right')
     #packit controls what part of the screen these elements will show on 
      #default is top
     
@@ -49,12 +45,14 @@ class myGUI:
           #sustains the window on a loop until the user closes it out
         #the rest of the code does not get executed until you're finished with that window
 
-    def convert(self):
-        kilo = float(self.entry.get()) #get is a built in function ; accessor method
+    def do_something(self):
+        tkinter.messagebox.showinfo("Selection", "The value is " + str(self.radio_var.get()))
 
-        miles = round(kilo*0.6214,2)
+    #get method gets the value of that variable and need to convert to the string because it is a message box
+    #values are set 10,20,30
 
-        tkinter.messagebox.showinfo("Result", str(kilo)+' kilometers is equal to '+ str(miles)+ " miles")
+
+
     
         #top bottom left and right or options and top is the default if you dont specify
         
